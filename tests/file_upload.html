@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 
 <head>    
+  <style>
+    .uploaded_image{
+      height: 100vh;
+   
+    }
+  </style>
 </head>
 
 <body>
@@ -24,7 +30,7 @@
         //output.innerHTML = "<div><img src='"+src+"'></div>";
 
         var e = document.createElement('div');
-        e.innerHTML = "<img src='"+src+"'></div>";
+        e.innerHTML = "<img class='uploaded_image 'src='"+src+"'></div>";
         while(e.firstChild) {
            output.appendChild(e.firstChild);
        }
