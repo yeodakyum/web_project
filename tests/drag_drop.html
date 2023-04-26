@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
 <style>
@@ -19,21 +19,20 @@ function allowDrop(ev) {
   ev.preventDefault();
 }
 
-function drag(ev) {
-  ev.dataTransfer.setData("text", ev.target.id);
-}
+      function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+      }
 
-function drop(ev) {
-  ev.preventDefault();
-  var data = ev.dataTransfer.getData("text");
-  ev.target.appendChild(document.getElementById(data));
-}
-</script>
-</head>
-<body>
-
-<h2>인생내컷</h2>
-<p>인생내컷 drag and drop </p>
+      function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+      }
+    </script>
+  </head>
+  <body>
+    <h2>인생내컷</h2>
+    <p>인생내컷 drag and drop</p>
 
 <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
   <img src="https://upload.wikimedia.org/wikipedia/en/7/7d/Lenna_%28test_image%29.png" draggable="true" ondragstart="drag(event)" id="drag1" width="180px">
