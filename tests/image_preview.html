@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>image_preview</title>
+  </head>
+  <body>
+    <div>
+      <img id="img" src="choose.png" height="500" />
+    </div>
+    <input id="input" type="file" />
+
+    <script>
+      let img = document.getElementById("img");
+      let input = document.getElementById("input");
+
+      input.onchange = (e) => {
+        if (input.files[0]) img.src = URL.createObjectURL(input.files[0]);
+      };
+    </script>
+  </body>
+</html>

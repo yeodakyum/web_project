@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      .button {
+        cursor: pointer;
+        position: relative;
+        display: inline-block;
+        user-select: none;
+      }
+      .button ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        left: 60px;
+        top: 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease-in-out;
+      }
+      .button:hover ul {
+        opacity: 1;
+        visibility: visible;
+      }
+      .button ul li {
+        padding: 8px 16px;
+        background-color: #f8f9fa;
+        border: 1px solid #ced4da;
+        margin-bottom: 4px;
+        font-size: 14px;
+      }
+      .button > div {
+        position: relative;
+        width: 60px;
+        height: 60px;
+        background: #007bff;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: transform 0.1s ease-in-out;
+      }
+      .button:active > div {
+        transform: scale(0.9);
+      }
+      svg {
+        transform-origin: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="button">
+      <div>
+        <svg
+          id="svg"
+          width="60"
+          height="60"
+          viewBox="0 0 60 60"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            id="svgPath"
+            d="M3 14L8 19L21 6"
+            stroke="white"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </div>
+      <ul>
+        <li>Download 1</li>
+        <li>Download 2</li>
+        <li>Download 3</li>
+      </ul>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script>
+      const button = document.querySelector(".button");
+      const svg = document.getElementById("svg");
+
+      button.addEventListener("mouseenter", (e) => {
+        gsap.to(svg, { rotation: 360, duration: 0.3, ease: "power2.inOut" });
+      });
+
+      button.addEventListener("mouseleave", (e) => {
+        gsap.to(svg, { rotation: 0, duration: 0.3, ease: "power2.inOut" });
+      });
+    </script>
+  </body>
+</html>
