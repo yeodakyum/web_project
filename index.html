@@ -45,9 +45,7 @@
         <p style="background-color: #3772a9">#3772a9</p>
         <p style="background-color: #76b9cb">#76b9cb</p>
         <p style="background-color: #aecfd8">#aecfd8</p> -->
-        <button class="frame-button" data-next-content="filter">
-          프레임 변경하기</button
-        >&nbsp;&nbsp;&nbsp;
+        <button class="frame-button">프레임 변경하기</button>&nbsp;&nbsp;&nbsp;
         <div id="img_list">
           <div class="img_group">
             <input
@@ -148,5 +146,17 @@
       let color_input = document.getElementById("color").value;
       document.getElementById("img_list").style.backgroundColor = color_input;
     }
+
+    document
+      .querySelector(".frame-button")
+      .addEventListener("click", function () {
+        let colorInput = document.createElement("input");
+        colorInput.type = "color";
+        colorInput.id = "color";
+        colorInput.onchange = color_change;
+        colorInput.style.display = "none"; // input 태그를 숨기고, 프로그램적으로 클릭 이벤트를 발생시킵니다.
+        document.body.appendChild(colorInput);
+        colorInput.click();
+      });
   </script>
 </html>
