@@ -2,32 +2,59 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>index</title>
+    <title>한양네컷</title>
     <link href="style.css" rel="stylesheet" />
   </head>
   <body>
     <header>
       <h1>한양네컷</h1>
     </header>
-    <nav>
+    <nav id="navbar">
       <ul>
-        <li><a href="#">HOME</a></li>
-        <li><a href="#">PICTURE</a></li>
-        <li><a href="#">ABOUT US</a></li>
+        <li><a href="#" data-content="about">ABOUT US</a></li>
+        <li><a href="#" data-content="upload">UPLOAD</a></li>
+        <li><a href="#" data-content="filter">FILTER</a></li>
       </ul>
     </nav>
     <main>
-      <h2>색깔 테스트</h2>
-      <p>
-        <a href="https://color.adobe.com/ko/create/color-wheel"
-          >https://color.adobe.com/ko/create/color-wheel</a
-        >
-      </p>
-      <p style="background-color: #807bb5">#807bb5</p>
-      <p style="background-color: #364b91">#364b91</p>
-      <p style="background-color: #3772a9">#3772a9</p>
-      <p style="background-color: #76b9cb">#76b9cb</p>
-      <p style="background-color: #aecfd8">#aecfd8</p>
+      <div id="about" class="content">
+        <h1>당신의 일상을 예술작품으로 바꿔보세요.</h1>
+        <br />
+        <p>
+          단 몇 번의 클릭으로 사진 업로드부터 프레임 색깔, 그리고 필터 적용까지
+          모든 과정이 가능합니다.
+        </p>
+        <p>
+          다양한 프레임 색깔은 여러분의 사진을 독특하게 만들어주며, 수많은
+          필터는 감정과 분위기를 살려줍니다.
+        </p>
+        <p>
+          이 모든 것은 여러분의 사진을 그저 사진이 아닌, 여러분의 이야기와
+          감정을 담은 예술작품으로 만들어 드립니다.
+        </p>
+        <p>완성된 작품은 다운로드 받아 언제든지 감상하실 수 있습니다.</p>
+        <br />
+        <button class="page-button" data-next-content="upload">
+          사진 업로드하기
+        </button>
+      </div>
+      <div id="upload" class="content" style="display: none">
+        <h2>색깔 테스트</h2>
+        <p style="background-color: #807bb5">#807bb5</p>
+        <p style="background-color: #364b91">#364b91</p>
+        <p style="background-color: #3772a9">#3772a9</p>
+        <p style="background-color: #76b9cb">#76b9cb</p>
+        <p style="background-color: #aecfd8">#aecfd8</p>
+        <br />
+        <button class="page-button" data-next-content="filter">
+          필터 적용하기
+        </button>
+      </div>
+      <div id="filter" class="content" style="display: none">
+        <p>업로드한 사진들에 필터를 씌우는 페이지입니다.</p>
+        <br />
+        <button class="page-button">다운로드</button>
+      </div>
     </main>
     <footer>
       <p>
@@ -36,4 +63,34 @@
       </p>
     </footer>
   </body>
+
+  <script>
+    document
+      .getElementById("navbar")
+      .addEventListener("click", function (event) {
+        if (event.target.getAttribute("data-content")) {
+          event.preventDefault();
+
+          let contents = document.getElementsByClassName("content");
+          for (let i = 0; i < contents.length; i++) {
+            contents[i].style.display = "none";
+          }
+
+          let contentId = event.target.getAttribute("data-content");
+          document.getElementById(contentId).style.display = "block";
+        }
+      });
+
+    document.querySelector("main").addEventListener("click", function (event) {
+      if (event.target.getAttribute("data-next-content")) {
+        let contents = document.getElementsByClassName("content");
+        for (let i = 0; i < contents.length; i++) {
+          contents[i].style.display = "none";
+        }
+
+        let contentId = event.target.getAttribute("data-next-content");
+        document.getElementById(contentId).style.display = "block";
+      }
+    });
+  </script>
 </html>

@@ -4,20 +4,24 @@ body {
   font-family: sans-serif;
   background-color: #f2f2f2;
 }
+
 header {
   background-color: #3472f8; /*4f83f0*/
   color: white;
   padding: 20px;
   text-align: center;
 }
+
 h1 {
   margin: 0;
 }
+
 nav {
   background-color: #84a9f9; /*7fa3f0*/
   color: white;
   padding: 10px;
 }
+
 nav ul {
   margin: 0;
   padding: 0;
@@ -27,13 +31,16 @@ nav ul {
   justify-content: center;
   gap: 30px;
 }
+
 nav li {
   margin: 0 10px;
 }
+
 nav a {
   color: white;
   text-decoration: none;
 }
+
 main {
   max-width: 1200px;
   margin: 20px auto;
@@ -42,9 +49,34 @@ main {
   background-color: white;
   box-shadow: 0px 0px 10px #888;
 }
+
+.page-button {
+  background: #5e5df0;
+  border-radius: 999px;
+  box-shadow: #5e5df0 0 10px 20px -10px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  opacity: 1;
+  outline: 0 solid transparent;
+  padding: 8px 18px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: fit-content;
+  word-break: break-word;
+  border: 0;
+}
+
 footer {
   background-color: #3472f8;
   color: white;
   padding: 10px;
   text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
