@@ -146,5 +146,17 @@
       let color_input = document.getElementById("color").value;
       document.getElementById("img_list").style.backgroundColor = color_input;
     }
+
+    document
+      .querySelector(".frame-button")
+      .addEventListener("click", function () {
+        let colorInput = document.createElement("input");
+        colorInput.type = "color";
+        colorInput.id = "color";
+        colorInput.onchange = color_change;
+        colorInput.style.display = "none"; // input 태그를 숨기고, 프로그램적으로 클릭 이벤트를 발생시킵니다.
+        document.body.appendChild(colorInput);
+        colorInput.click();
+      });
   </script>
 </html>
