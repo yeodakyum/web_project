@@ -13,7 +13,11 @@
       <ul>
         <li><a href="#" data-content="about">ABOUT US</a></li>
         <li><a href="#" data-content="upload">UPLOAD</a></li>
-        <li><a href="#" data-content="filter">FILTER</a></li>
+        <li>
+          <a href="#" data-content="filter" data-next-content="filter"
+            >FILTER</a
+          >
+        </li>
       </ul>
     </nav>
     <main style="overflow-y: scroll">
@@ -38,79 +42,93 @@
           사진 업로드하기
         </button>
       </div>
-      <div id="upload" class="content" style="display: none">
-        <!-- <h2>색깔 테스트</h2>
-        <p style="background-color: #807bb5">#807bb5</p>
-        <p style="background-color: #364b91">#364b91</p>
-        <p style="background-color: #3772a9">#3772a9</p>
-        <p style="background-color: #76b9cb">#76b9cb</p>
-        <p style="background-color: #aecfd8">#aecfd8</p> -->
-        <button class="frame-button" onclick="open_color()">
-          프레임 변경하기</button
-        >&nbsp;&nbsp;&nbsp;
-        <input type="color" id="color" onchange="color_change()" hidden />
 
-        <div id="img_list">
-          <div class="img_group">
-            <input
-              id="input1"
-              type="file"
-              onchange="change(this.id)"
-              accept="image/*"
-              hidden
-            />
-            <label for="input1"><img class="img" src="plus.png" /></label>
+      <div id="upload" class="content" style="display: none">
+        <div class="flex-container">
+          <div class="button-container">
+            <button class="frame-button" onclick="open_color()">
+              프레임 변경하기
+            </button>
           </div>
-          <div class="img_group">
-            <input
-              id="input2"
-              type="file"
-              onchange="change(this.id)"
-              accept="image/*"
-              hidden
-            />
-            <label for="input2"><img class="img" src="plus.png" /></label>
+          <div class="image-container">
+            <input type="color" id="color" onchange="color_change()" hidden />
+            <div id="img_list">
+              <div class="img_group">
+                <input
+                  id="input1"
+                  type="file"
+                  onchange="change(this.id)"
+                  accept="image/*"
+                  hidden
+                />
+                <label for="input1"><img class="img" src="plus.png" /></label>
+              </div>
+              <div class="img_group">
+                <input
+                  id="input2"
+                  type="file"
+                  onchange="change(this.id)"
+                  accept="image/*"
+                  hidden
+                />
+                <label for="input2"><img class="img" src="plus.png" /></label>
+              </div>
+              <div class="img_group">
+                <input
+                  id="input3"
+                  type="file"
+                  onchange="change(this.id)"
+                  accept="image/*"
+                  hidden
+                />
+                <label for="input3"><img class="img" src="plus.png" /></label>
+              </div>
+              <div class="img_group">
+                <input
+                  id="input4"
+                  type="file"
+                  onchange="change(this.id)"
+                  accept="image/*"
+                  hidden
+                />
+                <label for="input4"><img class="img" src="plus.png" /></label>
+              </div>
+            </div>
           </div>
-          <div class="img_group">
-            <input
-              id="input3"
-              type="file"
-              onchange="change(this.id)"
-              accept="image/*"
-              hidden
-            />
-            <label for="input3"><img class="img" src="plus.png" /></label>
-          </div>
-          <div class="img_group">
-            <input
-              id="input4"
-              type="file"
-              onchange="change(this.id)"
-              accept="image/*"
-              hidden
-            />
-            <label for="input4"><img class="img" src="plus.png" /></label>
+          <div class="button-container">
+            <button class="page-button" data-next-content="filter">
+              필터 적용하기
+            </button>
           </div>
         </div>
-        &nbsp;&nbsp;&nbsp;
-        <button class="page-button" data-next-content="filter">
-          필터 적용하기
-        </button>
       </div>
+
       <div id="filter" class="content" style="display: none">
-        <div class="button-container">
-          <button class="button" data-filter="brightness">Brightness</button>
-          <button class="button" data-filter="contrast">Contrast</button>
-          <button class="button" data-filter="saturate">Saturate</button>
-          <button class="button" data-filter="sepia">Sepia</button>
-          <button class="button" data-filter="grayscale">Grayscale</button>
-          <button class="button" data-filter="blur">Blur</button>
+        <div class="flex-container">
+          <div class="button-container">
+            <button class="filter-button" data-filter="brightness">
+              Brightness
+            </button>
+            <button class="filter-button" data-filter="contrast">
+              Contrast
+            </button>
+            <button class="filter-button" data-filter="saturate">
+              Saturate
+            </button>
+            <button class="filter-button" data-filter="sepia">Sepia</button>
+            <button class="filter-button" data-filter="grayscale">
+              Grayscale
+            </button>
+            <button class="filter-button" data-filter="blur">Blur</button>
+            <button class="filter-button" id="clear-filters">필터 해제</button>
+          </div>
+          <div class="image-container" id="filter-image-container">
+            <!-- 업로드된 사진들이 여기에 추가됩니다 -->
+          </div>
+          <div class="button-container">
+            <button class="page-button">다운로드</button>
+          </div>
         </div>
-        <div class="image-container" id="filter-image-container">
-          <!-- 업로드된 사진들이 여기에 추가됩니다 -->
-        </div>
-        <br />
-        <button class="page-button">다운로드</button>
       </div>
     </main>
     <footer>
@@ -136,17 +154,17 @@
         }
       });
 
-    document.querySelector("main").addEventListener("click", function (event) {
-      if (event.target.getAttribute("data-next-content")) {
-        let contents = document.getElementsByClassName("content");
-        for (let i = 0; i < contents.length; i++) {
-          contents[i].style.display = "none";
-        }
+    // document.querySelector("main").addEventListener("click", function (event) {
+    //   if (event.target.getAttribute("data-next-content")) {
+    //     let contents = document.getElementsByClassName("content");
+    //     for (let i = 0; i < contents.length; i++) {
+    //       contents[i].style.display = "none";
+    //     }
 
-        let contentId = event.target.getAttribute("data-next-content");
-        document.getElementById(contentId).style.display = "block";
-      }
-    });
+    //     let contentId = event.target.getAttribute("data-next-content");
+    //     document.getElementById(contentId).style.display = "block";
+    //   }
+    // });
 
     function change(id) {
       let input = document.getElementById(id);
@@ -161,43 +179,87 @@
       document.getElementById("img_list").style.backgroundColor = color_input;
     }
 
+    function copyImagesToFilterPage() {
+      let imageContainer = document.getElementById("filter-image-container");
+      let images = document
+        .getElementById("img_list")
+        .getElementsByClassName("img");
+
+      // 기존에 추가된 이미지들을 모두 제거합니다
+      while (imageContainer.firstChild) {
+        imageContainer.firstChild.remove();
+      }
+
+      // img_list 전체를 복사하여 필터 페이지에 추가합니다
+      let imgList = document.getElementById("img_list");
+      let clonedImgList = imgList.cloneNode(true);
+
+      // 이미지를 클릭했을 때 아무런 동작도 하지 않도록 합니다.
+      let clonedImages = clonedImgList.getElementsByClassName("img");
+      for (let i = 0; i < clonedImages.length; i++) {
+        clonedImages[i].addEventListener("click", function (event) {
+          event.stopPropagation();
+        });
+      }
+
+      // 필터 페이지에 이미지 리스트가 이미 존재한다면 제거합니다
+      let existingImgList = imageContainer.querySelector("#img_list");
+      if (existingImgList) {
+        existingImgList.remove();
+      }
+
+      // 필터 페이지에 복사한 이미지 리스트를 추가합니다
+      imageContainer.appendChild(clonedImgList);
+    }
+
+    // // '필터 적용하기' 버튼 클릭 이벤트
     // document
-    //   .querySelector(".frame-button")
+    //   .querySelector('.page-button[data-next-content="filter"]')
+    //   .addEventListener("click", copyImagesToFilterPage);
+
+    // // nav에서 'FILTER'를 클릭하는 이벤트
+    // document
+    //   .querySelector('#navbar a[data-content="filter"]')
+    //   .addEventListener("click", copyImagesToFilterPage);
+
+    // function change(id) {
+    //   let input = document.getElementById(id);
+    //   let img = document
+    //     .getElementById(id)
+    //     .parentElement.getElementsByClassName("img")[0];
+    //   if (input.files[0]) img.src = URL.createObjectURL(input.files[0]);
+    // }
+
+    // function color_change() {
+    //   let color_input = document.getElementById("color").value;
+    //   document.getElementById("img_list").style.backgroundColor = color_input;
+    // }
+
+    // document
+    //   .querySelector('.page-button[data-next-content="filter"]')
     //   .addEventListener("click", function () {
-    //     let colorInput = document.createElement("input");
-    //     colorInput.type = "color";
-    //     colorInput.id = "color";
-    //     colorInput.onchange = color_change;
-    //     colorInput.style.display = "none"; // input 태그를 숨기고, 프로그램적으로 클릭 이벤트를 발생시킵니다.
-    //     document.body.appendChild(colorInput);
-    //     colorInput.click();
+    //     let imageContainer = document.getElementById("filter-image-container");
+    //     let images = document
+    //       .getElementById("img_list")
+    //       .getElementsByClassName("img");
+
+    //     // 기존에 추가된 이미지들을 모두 제거합니다
+    //     while (imageContainer.firstChild) {
+    //       imageContainer.firstChild.remove();
+    //     }
+
+    //     // 업로드된 이미지들을 필터 적용 페이지에 추가합니다
+    //     for (let i = 0; i < images.length; i++) {
+    //       if (images[i].src != "plus.png") {
+    //         let img = document.createElement("img");
+    //         img.src = images[i].src;
+    //         imageContainer.appendChild(img);
+    //       }
+    //     }
     //   });
 
-    document
-      .querySelector('.page-button[data-next-content="filter"]')
-      .addEventListener("click", function () {
-        let imageContainer = document.getElementById("filter-image-container");
-        let images = document
-          .getElementById("img_list")
-          .getElementsByClassName("img");
-
-        // 기존에 추가된 이미지들을 모두 제거합니다
-        while (imageContainer.firstChild) {
-          imageContainer.firstChild.remove();
-        }
-
-        // 업로드된 이미지들을 필터 적용 페이지에 추가합니다
-        for (let i = 0; i < images.length; i++) {
-          if (images[i].src != "plus.png") {
-            let img = document.createElement("img");
-            img.src = images[i].src;
-            imageContainer.appendChild(img);
-          }
-        }
-      });
-
     // 필터 버튼 클릭 시 해당 필터를 이미지에 적용합니다
-    let buttons = document.querySelectorAll(".button");
+    let buttons = document.querySelectorAll(".filter-button");
     buttons.forEach((button) => {
       button.addEventListener("click", function () {
         let filter = this.getAttribute("data-filter");
@@ -229,10 +291,86 @@
         }
       });
     });
+
+    document
+      .getElementById("clear-filters")
+      .addEventListener("click", function () {
+        let images = document
+          .getElementById("filter-image-container")
+          .getElementsByTagName("img");
+        for (let i = 0; i < images.length; i++) {
+          images[i].style.filter = "";
+        }
+      });
+
     function open_color() {
       let color_input = document.getElementById("color");
       //color_input.hidden=false;
       color_input.click();
+    }
+
+    function handleNavigationToUpload(event) {
+      let contents = document.getElementsByClassName("content");
+      for (let i = 0; i < contents.length; i++) {
+        contents[i].style.display = "none";
+      }
+
+      let contentId = event.target.getAttribute("data-next-content");
+      document.getElementById(contentId).style.display = "block";
+
+      event.stopPropagation(); // Prevent the event from propagating further
+    }
+
+    document
+      .querySelector('.page-button[data-next-content="upload"]')
+      .addEventListener("click", handleNavigationToUpload);
+
+    function handleNavigationToFilter(event) {
+      let images = document
+        .getElementById("img_list")
+        .getElementsByClassName("img");
+      let allImagesUploaded = Array.from(images).every(
+        (img) => img.src !== "plus.png"
+      );
+
+      if (!allImagesUploaded) {
+        alert("사진을 모두 업로드해주세요.");
+        event.preventDefault(); // 클릭 이벤트가 추가로 진행되는 것을 방지합니다.
+        return; // 함수를 종료하여 다음 코드가 실행되지 않게 합니다.
+      } else {
+        let contents = document.getElementsByClassName("content");
+        for (let i = 0; i < contents.length; i++) {
+          contents[i].style.display = "none";
+        }
+
+        let contentId = event.target.getAttribute("data-next-content");
+        document.getElementById(contentId).style.display = "block";
+
+        copyImagesToFilterPage();
+      }
+
+      event.stopPropagation(); // Prevent the event from propagating further
+    }
+
+    document
+      .querySelector('.page-button[data-next-content="filter"]')
+      .addEventListener("click", handleNavigationToFilter);
+
+    document
+      .querySelector('#navbar a[data-content="filter"]')
+      .addEventListener("click", handleNavigationToFilter);
+
+    function navigateTo(pageName) {
+      let contents = document.getElementsByClassName("content");
+      for (let i = 0; i < contents.length; i++) {
+        contents[i].style.display = "none";
+      }
+
+      if (pageName === "filter") {
+        copyImagesToFilterPage();
+      }
+
+      document.getElementById(pageName).style.display = "block";
     }
   </script>
 </html>
