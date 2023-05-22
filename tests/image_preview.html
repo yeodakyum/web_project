@@ -18,7 +18,7 @@
         min-height: 100%;
         min-width: 100%;
         object-fit: cover;
-        object-position: center; 
+        object-position: center;
       }
 
       .img_group {
@@ -37,25 +37,51 @@
   </head>
   <body>
     <div class="img_group">
-      <input id="input1" type="file" onchange="change(this.id)" accept="image/*" hidden />
+      <input
+        id="input1"
+        type="file"
+        onchange="change(this.id)"
+        accept="image/*"
+        hidden
+      />
       <label for="input1"><img class="img" src="choose.png" /></label>
     </div>
     <div class="img_group">
-      <input id="input2" type="file" onchange="change(this.id)" accept="image/*" hidden />
+      <input
+        id="input2"
+        type="file"
+        onchange="change(this.id)"
+        accept="image/*"
+        hidden
+      />
       <label for="input2"><img class="img" src="choose.png" /></label>
     </div>
     <div class="img_group">
-      <input id="input3" type="file" onchange="change(this.id)" accept="image/*" hidden />
+      <input
+        id="input3"
+        type="file"
+        onchange="change(this.id)"
+        accept="image/*"
+        hidden
+      />
       <label for="input3"><img class="img" src="choose.png" /></label>
     </div>
     <div class="img_group">
-      <input id="input4" type="file" onchange="change(this.id)" accept="image/*" hidden />
+      <input
+        id="input4"
+        type="file"
+        onchange="change(this.id)"
+        accept="image/*"
+        hidden
+      />
       <label for="input4"><img class="img" src="choose.png" /></label>
     </div>
     <script>
       function change(id) {
         let input = document.getElementById(id);
-        let img = document.getElementById(id).parentElement.getElementsByClassName("img")[0];
+        let img = document
+          .getElementById(id)
+          .parentElement.getElementsByClassName("img")[0];
         if (input.files[0]) img.src = URL.createObjectURL(input.files[0]);
       }
     </script>

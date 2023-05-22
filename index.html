@@ -39,12 +39,52 @@
         </button>
       </div>
       <div id="upload" class="content" style="display: none">
-        <h2>색깔 테스트</h2>
+        <!-- <h2>색깔 테스트</h2>
         <p style="background-color: #807bb5">#807bb5</p>
         <p style="background-color: #364b91">#364b91</p>
         <p style="background-color: #3772a9">#3772a9</p>
         <p style="background-color: #76b9cb">#76b9cb</p>
-        <p style="background-color: #aecfd8">#aecfd8</p>
+        <p style="background-color: #aecfd8">#aecfd8</p> -->
+        <div class="img_group">
+          <input
+            id="input1"
+            type="file"
+            onchange="change(this.id)"
+            accept="image/*"
+            hidden
+          />
+          <label for="input1"><img class="img" src="plus.png" /></label>
+        </div>
+        <div class="img_group">
+          <input
+            id="input2"
+            type="file"
+            onchange="change(this.id)"
+            accept="image/*"
+            hidden
+          />
+          <label for="input2"><img class="img" src="plus.png" /></label>
+        </div>
+        <div class="img_group">
+          <input
+            id="input3"
+            type="file"
+            onchange="change(this.id)"
+            accept="image/*"
+            hidden
+          />
+          <label for="input3"><img class="img" src="plus.png" /></label>
+        </div>
+        <div class="img_group">
+          <input
+            id="input4"
+            type="file"
+            onchange="change(this.id)"
+            accept="image/*"
+            hidden
+          />
+          <label for="input4"><img class="img" src="plus.png" /></label>
+        </div>
         <br />
         <button class="page-button" data-next-content="filter">
           필터 적용하기
@@ -57,10 +97,8 @@
       </div>
     </main>
     <footer>
-      <p>
-        한양대학교 정보시스템학과<br />
-        권기태, 여다겸, 슈브로
-      </p>
+      한양대학교 정보시스템학과<br />
+      권기태, 여다겸, 슈브로
     </footer>
   </body>
 
@@ -92,5 +130,12 @@
         document.getElementById(contentId).style.display = "block";
       }
     });
+    function change(id) {
+      let input = document.getElementById(id);
+      let img = document
+        .getElementById(id)
+        .parentElement.getElementsByClassName("img")[0];
+      if (input.files[0]) img.src = URL.createObjectURL(input.files[0]);
+    }
   </script>
 </html>
