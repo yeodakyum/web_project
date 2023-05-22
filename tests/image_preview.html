@@ -4,13 +4,12 @@
     <title>image_preview</title>
     <style>
       label {
-        display: flex;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
         height: 100%;
         width: 100%;
         cursor: pointer;
-        margin: 0;
         padding: 0;
       }
 
@@ -19,23 +18,44 @@
         min-width: 100%;
         object-fit: cover;
         object-position: center; 
+        background-color: white;
       }
-
+      
       .img_group {
-        border: solid 2px black;
+        
         height: 25vh;
         width: 25vh;
         text-align: center;
         background-color: lightgray;
-        display: flex;
+        display: inline-flex;
         justify-content: center;
         align-items: center;
         overflow: hidden;
         position: relative;
+        padding: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      .img_group:last-child{
+        
+        padding-bottom: 20px;
+      }
+      .img_group:first-child{
+        padding-top: 20px;
+      }
+
+      #img_list{
+        display: flex;
+        flex-direction: column;
+
+
       }
     </style>
   </head>
   <body>
+    <input type="color" id="color" onchange="color_change()">
+
+    <div id="img_list">
     <div class="img_group">
       <input id="input1" type="file" onchange="change(this.id)" accept="image/*" hidden />
       <label for="input1"><img class="img" src="choose.png" /></label>
@@ -52,12 +72,22 @@
       <input id="input4" type="file" onchange="change(this.id)" accept="image/*" hidden />
       <label for="input4"><img class="img" src="choose.png" /></label>
     </div>
+  </div>
     <script>
       function change(id) {
         let input = document.getElementById(id);
         let img = document.getElementById(id).parentElement.getElementsByClassName("img")[0];
         if (input.files[0]) img.src = URL.createObjectURL(input.files[0]);
       }
+      function color_change(){
+        
+        let color_input = document.getElementById("color").value;
+        let img_groups = document.getElementsByClassName("img_group");
+        for(let i=0; i<img_groups.length; i++){
+          img_groups[i].style.backgroundColor = color_input;
+        }
+      }
     </script>
   </body>
 </html>
+
