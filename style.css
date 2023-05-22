@@ -6,9 +6,11 @@ body {
 }
 
 header {
+  min-height: 6vh;
   background-color: #3472f8; /*4f83f0*/
   color: white;
-  padding: 20px;
+  padding: 0.5em;
+  padding-top: 0.7em;
   text-align: center;
 }
 
@@ -17,9 +19,11 @@ h1 {
 }
 
 nav {
+  min-height: 2vh;
   background-color: #84a9f9; /*7fa3f0*/
   color: white;
-  padding: 10px;
+  padding: 0.3em;
+  padding-top: 0.1em;
 }
 
 nav ul {
@@ -50,6 +54,37 @@ main {
   box-shadow: 0px 0px 10px #888;
 }
 
+label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+
+.img {
+  min-height: 100%;
+  min-width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.img_group {
+  border: solid 2px black;
+  height: 15vh;
+  width: 25vh;
+  text-align: center;
+  background-color: lightgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
 .page-button {
   background: #5e5df0;
   border-radius: 999px;
@@ -72,11 +107,13 @@ main {
 }
 
 footer {
+  min-height: 7vh;
+  width: 100%;
   background-color: #3472f8;
   color: white;
-  padding: 10px;
   text-align: center;
+  padding-top: 0.3em;
   position: fixed;
   bottom: 0;
-  width: 100%;
+  box-sizing: border-box;
 }
