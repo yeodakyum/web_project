@@ -7,7 +7,7 @@ body {
 
 header {
   min-height: 6vh;
-  background-color: #3472f8; /*4f83f0*/
+  background-color: #3472f8;
   color: white;
   padding: 0.5em;
   padding-top: 0.7em;
@@ -20,7 +20,7 @@ h1 {
 
 nav {
   min-height: 2vh;
-  background-color: #84a9f9; /*7fa3f0*/
+  background-color: #84a9f9;
   color: white;
   padding: 0.3em;
   padding-top: 0.1em;
@@ -113,7 +113,7 @@ label {
 .button-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
 }
 
 .image-container {
@@ -123,7 +123,9 @@ label {
   flex-grow: 1;
 }
 
-.page-button {
+.page-button,
+.frame-button,
+.filter-button {
   background: #5e5df0;
   border-radius: 999px;
   box-shadow: #5e5df0 0 10px 20px -10px;
@@ -144,27 +146,9 @@ label {
   border: 0;
 }
 
-.frame-button,
 .filter-button {
-  background: #807bb5;
-  border-radius: 999px;
-  box-shadow: #807bb5 0 10px 20px -10px;
-  box-sizing: border-box;
-  color: #ffffff;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 24px;
-  opacity: 1;
-  outline: 0 solid transparent;
-  padding: 8px 18px;
   margin-bottom: 10px;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  width: fit-content;
-  word-break: break-word;
-  border: 0;
+  width: 120px;
 }
 
 #upload {
