@@ -16,7 +16,7 @@
         <li><a href="#" data-content="filter">FILTER</a></li>
       </ul>
     </nav>
-    <main>
+    <main style="overflow-y: scroll">
       <div id="about" class="content">
         <h1>당신의 일상을 예술작품으로 바꿔보세요.</h1>
         <br />
@@ -45,50 +45,52 @@
         <p style="background-color: #3772a9">#3772a9</p>
         <p style="background-color: #76b9cb">#76b9cb</p>
         <p style="background-color: #aecfd8">#aecfd8</p> -->
-        <div class="img_group">
-          <input
-            id="input1"
-            type="file"
-            onchange="change(this.id)"
-            accept="image/*"
-            hidden
-          />
-          <label for="input1"><img class="img" src="plus.png" /></label>
-        </div>
-        <div class="img_group">
-          <input
-            id="input2"
-            type="file"
-            onchange="change(this.id)"
-            accept="image/*"
-            hidden
-          />
-          <label for="input2"><img class="img" src="plus.png" /></label>
-        </div>
-        <div class="img_group">
-          <input
-            id="input3"
-            type="file"
-            onchange="change(this.id)"
-            accept="image/*"
-            hidden
-          />
-          <label for="input3"><img class="img" src="plus.png" /></label>
-        </div>
-        <div class="img_group">
-          <input
-            id="input4"
-            type="file"
-            onchange="change(this.id)"
-            accept="image/*"
-            hidden
-          />
-          <label for="input4"><img class="img" src="plus.png" /></label>
-        </div>
-        <br />
         <button class="frame-button" data-next-content="filter">
           프레임 변경하기</button
         >&nbsp;&nbsp;&nbsp;
+        <div id="img_list">
+          <div class="img_group">
+            <input
+              id="input1"
+              type="file"
+              onchange="change(this.id)"
+              accept="image/*"
+              hidden
+            />
+            <label for="input1"><img class="img" src="plus.png" /></label>
+          </div>
+          <div class="img_group">
+            <input
+              id="input2"
+              type="file"
+              onchange="change(this.id)"
+              accept="image/*"
+              hidden
+            />
+            <label for="input2"><img class="img" src="plus.png" /></label>
+          </div>
+          <div class="img_group">
+            <input
+              id="input3"
+              type="file"
+              onchange="change(this.id)"
+              accept="image/*"
+              hidden
+            />
+            <label for="input3"><img class="img" src="plus.png" /></label>
+          </div>
+          <div class="img_group">
+            <input
+              id="input4"
+              type="file"
+              onchange="change(this.id)"
+              accept="image/*"
+              hidden
+            />
+            <label for="input4"><img class="img" src="plus.png" /></label>
+          </div>
+        </div>
+        &nbsp;&nbsp;&nbsp;
         <button class="page-button" data-next-content="filter">
           필터 적용하기
         </button>
@@ -133,12 +135,18 @@
         document.getElementById(contentId).style.display = "block";
       }
     });
+
     function change(id) {
       let input = document.getElementById(id);
       let img = document
         .getElementById(id)
         .parentElement.getElementsByClassName("img")[0];
       if (input.files[0]) img.src = URL.createObjectURL(input.files[0]);
+    }
+
+    function color_change() {
+      let color_input = document.getElementById("color").value;
+      document.getElementById("img_list").style.backgroundColor = color_input;
     }
   </script>
 </html>

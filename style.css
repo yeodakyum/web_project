@@ -57,13 +57,12 @@ main {
 }
 
 label {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   height: 100%;
   width: 100%;
   cursor: pointer;
-  margin: 0;
   padding: 0;
 }
 
@@ -72,23 +71,37 @@ label {
   min-width: 100%;
   object-fit: cover;
   object-position: center;
+  background-color: white;
 }
 
 .img_group {
-  border: solid 2px black;
   height: 15vh;
   width: 25vh;
   text-align: center;
-  margin: 0 auto;
-  background-color: lightgray;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   position: relative;
+  margin: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.img_group:last-child {
+  margin-bottom: 20px;
+}
+.img_group:first-child {
+  margin-top: 20px;
 }
 
-.page-button {
+#img_list {
+  display: inline-flex;
+  flex-direction: column;
+  background-color: lightgray;
+}
+
+.page-button,
+.frame-button {
   background: #5e5df0;
   border-radius: 999px;
   box-shadow: #5e5df0 0 10px 20px -10px;
