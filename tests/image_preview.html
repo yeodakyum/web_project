@@ -2,20 +2,62 @@
 <html lang="en">
   <head>
     <title>image_preview</title>
+    <style>
+      label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+        margin: 0;
+        padding: 0;
+      }
+
+      .img {
+        min-height: 100%;
+        min-width: 100%;
+        object-fit: cover;
+        object-position: center; 
+      }
+
+      .img_group {
+        border: solid 2px black;
+        height: 25vh;
+        width: 25vh;
+        text-align: center;
+        background-color: lightgray;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+      }
+    </style>
   </head>
   <body>
-    <div>
-      <img id="img" src="choose.png" height="500" />
+    <div class="img_group">
+      <input id="input1" type="file" onchange="change(this.id)" accept="image/*" hidden />
+      <label for="input1"><img class="img" src="choose.png" /></label>
     </div>
-    <input id="input" type="file" />
-
+    <div class="img_group">
+      <input id="input2" type="file" onchange="change(this.id)" accept="image/*" hidden />
+      <label for="input2"><img class="img" src="choose.png" /></label>
+    </div>
+    <div class="img_group">
+      <input id="input3" type="file" onchange="change(this.id)" accept="image/*" hidden />
+      <label for="input3"><img class="img" src="choose.png" /></label>
+    </div>
+    <div class="img_group">
+      <input id="input4" type="file" onchange="change(this.id)" accept="image/*" hidden />
+      <label for="input4"><img class="img" src="choose.png" /></label>
+    </div>
     <script>
-      let img = document.getElementById("img");
-      let input = document.getElementById("input");
-
-      input.onchange = (e) => {
+      function change(id) {
+        let input = document.getElementById(id);
+        let img = document.getElementById(id).parentElement.getElementsByClassName("img")[0];
         if (input.files[0]) img.src = URL.createObjectURL(input.files[0]);
-      };
+      }
     </script>
   </body>
 </html>

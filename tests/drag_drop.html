@@ -8,32 +8,51 @@
       #div4 {
         width: 200px;
         height: 200px;
-        margin: 10px;
+        margin: 20px;
         padding: 10px;
         border: 2px solid black;
         text-align: center;
         align-items: center;
+        background-color: white;
+        object-fit: fill;
+      }
+      #main{
+        background-color: cornflowerblue;
+        width:280px;
+        text-align: center;
+        align-items: center;
+        padding: 20px
       }
     </style>
     <script>
       function allowDrop(ev) {
-        ev.preventDefault();
-      }
+    ev.preventDefault();
+}
 
-      function drag(ev) {
-        ev.dataTransfer.setData("text", ev.target.id);
-      }
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
 
-      function drop(ev) {
-        ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");
-        ev.target.appendChild(document.getElementById(data));
-      }
+function drop(ev) {
+    ev.preventDefault();
+
+    var id = ev.dataTransfer.getData("text");
+    var element = document.getElementById(id)
+    var div = document.getElementById(id).parentNode;
+    var clonedHeart = document.getElementById(ev.target.id).cloneNode(true);
+
+    ev.target.parentNode.insertBefore(element, ev.target.id.nextSibling)
+    document.getElementById(ev.target.id).remove();
+    div.appendChild(clonedHeart);
+    ev.dataTransfer.clearData();
+}
     </script>
   </head>
   <body>
+    
     <h2>인생내컷</h2>
     <p>인생내컷 drag and drop</p>
+    <div id="main">
 
     <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
       <img
@@ -45,9 +64,17 @@
       />
     </div>
 
-<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)">
+  <img
+  src="https://i0.wp.com/gamertagzero.com/wp-content/uploads/2021/11/chrome_6MJ2jWz3rx.jpg?fit=800%2C519&ssl=1"
+  draggable="true"
+  ondragstart="drag(event)"
+  id="drag1"
+  width="180px"
+/></div>
 <div id="div3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 <div id="div4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 <div id="div5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+</div>
 </body>
 </html>
