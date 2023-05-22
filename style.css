@@ -82,22 +82,22 @@ label {
 
 .img_group {
   height: 15vh;
-  width: 25vh;
+  width: 20vh;
   text-align: center;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   position: relative;
-  margin: 20px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 .img_group:last-child {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .img_group:first-child {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 #img_list {
