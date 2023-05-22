@@ -40,6 +40,13 @@
       .img_group:first-child {
         margin-top: 20px;
       }
+      .draggable {
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
 
       #img_list {
         display: inline-flex;
@@ -94,12 +101,61 @@
       </div>
     </div>
     <script>
+
       function change(id) {
         let input = document.getElementById(id);
         let img = document
           .getElementById(id)
           .parentElement.getElementsByClassName("img")[0];
-        if (input.files[0]) img.src = URL.createObjectURL(input.files[0]);
+
+        // Remove previous draggable image if exists
+        let oldDraggable = document.getElementById(id + '_draggable');
+        if (oldDraggable) {
+          oldDraggable.remove();
+        }
+
+        if (input.files[0]) {
+          img.src = URL.createObjectURL(input.files[0]);
+
+          let draggable = document.createElement('img');
+          draggable.id = id + '_draggable';
+          draggable.src = img.src;
+          draggable.className = 'draggable';
+          draggable.style.height = '100%';
+          draggable.style.width = '100%';
+          draggable.style.objectFit = 'cover';
+          draggable.addEventListener('mousedown', startDrag);
+          draggable.addEventListener('mousemove', drag);
+          draggable.addEventListener('mouseup', endDrag);
+          draggable.addEventListener('mouseleave', endDrag);
+
+          let label = document.getElementById(id).parentElement;
+          label.appendChild(draggable);
+          
+        }
+      }
+
+      let currentDrag = null;
+      let startX = 0;
+      let startY = 0;
+
+      function startDrag(e) {
+        currentDrag = e.target;
+        startX = e.clientX;
+        startY = e.clientY;
+        console.log(currentDrag);
+      }
+
+      function drag(e) {
+        if (currentDrag) {
+          let dx = e.clientX - startX;
+          let dy = e.clientY - startY;
+          currentDrag.style.transform = `translate(${dx}px, ${dy}px)`;
+        }
+      }
+
+      function endDrag(e) {
+        currentDrag = null;
       }
       function color_change() {
         let color_input = document.getElementById("color").value;
