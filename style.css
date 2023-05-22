@@ -167,6 +167,17 @@ label {
   border: 0;
 }
 
+#upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+#color {
+  margin-top: 70px;
+}
+
 footer {
   min-height: 7vh;
   width: 100%;
