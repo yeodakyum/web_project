@@ -45,7 +45,11 @@
         <p style="background-color: #3772a9">#3772a9</p>
         <p style="background-color: #76b9cb">#76b9cb</p>
         <p style="background-color: #aecfd8">#aecfd8</p> -->
-        <button class="frame-button">프레임 변경하기</button>&nbsp;&nbsp;&nbsp;
+        <button class="frame-button" onclick="open_color()">
+          프레임 변경하기</button
+        >&nbsp;&nbsp;&nbsp;
+        <input type="color" id="color" onchange="color_change()" hidden />
+
         <div id="img_list">
           <div class="img_group">
             <input
@@ -157,17 +161,17 @@
       document.getElementById("img_list").style.backgroundColor = color_input;
     }
 
-    document
-      .querySelector(".frame-button")
-      .addEventListener("click", function () {
-        let colorInput = document.createElement("input");
-        colorInput.type = "color";
-        colorInput.id = "color";
-        colorInput.onchange = color_change;
-        colorInput.style.display = "none"; // input 태그를 숨기고, 프로그램적으로 클릭 이벤트를 발생시킵니다.
-        document.body.appendChild(colorInput);
-        colorInput.click();
-      });
+    // document
+    //   .querySelector(".frame-button")
+    //   .addEventListener("click", function () {
+    //     let colorInput = document.createElement("input");
+    //     colorInput.type = "color";
+    //     colorInput.id = "color";
+    //     colorInput.onchange = color_change;
+    //     colorInput.style.display = "none"; // input 태그를 숨기고, 프로그램적으로 클릭 이벤트를 발생시킵니다.
+    //     document.body.appendChild(colorInput);
+    //     colorInput.click();
+    //   });
 
     document
       .querySelector('.page-button[data-next-content="filter"]')
@@ -225,5 +229,10 @@
         }
       });
     });
+    function open_color() {
+      let color_input = document.getElementById("color");
+      //color_input.hidden=false;
+      color_input.click();
+    }
   </script>
 </html>
