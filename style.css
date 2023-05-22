@@ -46,10 +46,12 @@ nav a {
 }
 
 main {
+  height: 71vh;
   max-width: 1200px;
   margin: 20px auto;
   padding: 20px;
   text-align: center;
+  align-items: center;
   background-color: white;
   box-shadow: 0px 0px 10px #888;
 }
@@ -77,6 +79,7 @@ label {
   height: 15vh;
   width: 25vh;
   text-align: center;
+  margin: 0 auto;
   background-color: lightgray;
   display: flex;
   justify-content: center;
