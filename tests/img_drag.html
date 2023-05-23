@@ -29,6 +29,7 @@
         margin: 20px;
         margin-top: 10px;
         margin-bottom: 10px;
+        background-color: white;;
       }
       .img_group:last-child {
         margin-bottom: 20px;
@@ -90,7 +91,16 @@
     let dragging = false;
     let imagePositionX, imagePositionY;
     let initialPositionX, initialPositionY;
+    var primaryMouseButtonDown = false;
 
+    function setPrimaryButtonState(e) {
+    var flags = e.buttons !== undefined ? e.buttons : e.which;
+    primaryMouseButtonDown = (flags & 1) === 1;
+    }
+
+document.addEventListener("mousedown", setPrimaryButtonState);
+document.addEventListener("mousemove", setPrimaryButtonState);
+document.addEventListener("mouseup", setPrimaryButtonState);
     function change(id) {
     let input = document.getElementById(id).previousElementSibling;
     let label = document.getElementById(id);
@@ -122,14 +132,12 @@
 
         label.addEventListener('mousedown', function(e) {
           
-          
-         
-
           dragging = true;
           initialPositionX = e.offsetX;
           initialPositionY = e.offsetY;
-          imagePositionX = e.offsetX - parseInt(window.getComputedStyle(label).backgroundPositionX);
-          imagePositionY = e.offsetY - parseInt(window.getComputedStyle(label).backgroundPositionY);
+          imagePositionX =  parseInt(window.getComputedStyle(label).backgroundPositionX);
+          imagePositionY =  parseInt(window.getComputedStyle(label).backgroundPositionY);
+          
         });
 
     label.addEventListener('mousemove', function(e) {
@@ -137,23 +145,30 @@
        // console.log(this.clientHeight, this.clientWidth);
     let c_h = this.clientHeight, c_w = this.clientWidth;
     let i_h = parseInt(this.getAttribute("img-height")), i_w = parseInt(this.getAttribute("img-width"));
-    console.log(Math.min(c_h, c_w), Math.min(i_h, i_w));
+    //console.log(Math.min(c_h, c_w), Math.min(i_h, i_w));
     let scale = Math.min(c_h, c_w) /  Math.min(i_h, i_w)
     //console.log(scale); 
     //console.log(i_h*scale, i_w*scale);  
     i_h *= scale;
     i_w *= scale;
 
-
-    let newX = e.offsetX - imagePositionX;
-    let newY = e.offsetY - imagePositionY;
-
-    let maxPositionX = Math.abs(c_w - i_w) ;
-    let maxPositionY = Math.abs(c_h - i_h);
+    console.log(imagePositionX, imagePositionY);
+    let newX = e.offsetX - initialPositionX + imagePositionX;
+    let newY = e.offsetY - initialPositionY + imagePositionY;
+    //console.log("offset", e.offsetX, e.offsetY);
+    //newX = e.offsetX ;
+    //newY = e.offsetY ;
+    //console.log(newX, newY);
+    let maxdiffX = Math.max(i_w - c_w, 0) ;
+    let maxdiffY = Math.max(i_h - c_h, 0);
+    //console.log(maxdiffX,maxdiffY);
+    //console.log(maxPositionX, maxPositionY);
     // Check if the new position exceeds the boundaries
-    newX = Math.min(Math.max(newX, 0), maxPositionX) - Math.abs(c_w - i_w);
-    newY = Math.min(Math.max(newY, 0), maxPositionY) - Math.abs(c_h - i_h);
-
+    //newX =parseInt(Math.min(Math.max(newX, 0), maxPositionX) - Math.abs(c_w - i_w));
+   // newY = parseInt(Math.min(Math.max(newY, 0), maxPositionY) - Math.abs(c_h - i_h));
+        
+   newX = parseInt((newX > 0) ? Math.min(newX, 0) : Math.max(newX, -maxdiffX));
+   newY = parseInt((newY > 0) ? Math.min(newY, 0) : Math.max(newY, -maxdiffY));
     //console.log(newX, newY);
 
     label.style.backgroundPositionX = `${newX}px`;
@@ -169,7 +184,9 @@
         });
 
         label.addEventListener('mouseout', function() {
+            
           dragging = false;
+            
         });
       }
 
