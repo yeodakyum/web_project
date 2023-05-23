@@ -129,7 +129,7 @@
             <button class="filter-button" data-filter="blur">Blur</button>
             <button class="filter-button" id="clear-filters">필터 해제</button>
           </div>
-          <div class="image-container" id="filter-image-container">
+          <div class="image-container" id="filter-image-container" style="display: block;">
             <!-- 업로드된 사진들이 여기에 추가됩니다 -->
           </div>
           <div class="button-container">
@@ -406,76 +406,9 @@ function saveAs(uri, filename) {
         window.open(uri);
 
     }
-}function saveAs(uri, filename) {
-
-    var link = document.createElement('a');
-
-    if (typeof link.download === 'string') {
-
-        link.href = uri;
-        link.download = filename;
-
-        //Firefox requires the link to be in the body
-        document.body.appendChild(link);
-
-        //simulate click
-        link.click();
-
-        //remove the link when done
-        document.body.removeChild(link);
-
-    } else {
-
-        window.open(uri);
-
-    }
-}function saveAs(uri, filename) {
-
-    var link = document.createElement('a');
-
-    if (typeof link.download === 'string') {
-
-        link.href = uri;
-        link.download = filename;
-
-        //Firefox requires the link to be in the body
-        document.body.appendChild(link);
-
-        //simulate click
-        link.click();
-
-        //remove the link when done
-        document.body.removeChild(link);
-
-    } else {
-
-        window.open(uri);
-
-    }
-}function saveAs(uri, filename) {
-
-    var link = document.createElement('a');
-
-    if (typeof link.download === 'string') {
-
-        link.href = uri;
-        link.download = filename;
-
-        //Firefox requires the link to be in the body
-        document.body.appendChild(link);
-
-        //simulate click
-        link.click();
-
-        //remove the link when done
-        document.body.removeChild(link);
-
-    } else {
-
-        window.open(uri);
-
-    }
 }
+
+
 function saveAs(uri, filename) {
 
 var link = document.createElement('a');
@@ -503,8 +436,8 @@ if (typeof link.download === 'string') {
     function donwload_img(){
       console.log("hi");  
         
-        html2canvas(document.querySelector('#img_list'),{useCORS: true,allowTaint: true,}).then(function(canvas) {
-        console.log(canvas.toDataURL());
+        html2canvas(document.querySelector('#filter-image-container'),{useCORS: true,allowTaint: true, }).then(function(canvas) {
+        console.log(canvas.toDataURL());  
         saveAs(canvas.toDataURL(), 'file-name.png');
         });
       };

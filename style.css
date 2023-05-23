@@ -99,6 +99,10 @@ label {
   margin-top: 10px;
 }
 
+.img_group::-webkit-scrollbar {
+  display: none;
+}
+
 #img_list {
   display: inline-flex;
   flex-direction: column;
