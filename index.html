@@ -176,6 +176,9 @@
         .getElementById(id)
         .parentElement.getElementsByClassName("img")[0];
       if (input.files[0]) img.src = URL.createObjectURL(input.files[0]);
+      
+      input.parentElement.style.overflow = "auto";
+      input.nextElementSibling.style.alignItems = "flex-start";
     }
 
     function color_change() {
