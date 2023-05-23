@@ -56,6 +56,7 @@
           </div>
           <div class="image-container">
             <input type="color" id="color" onchange="color_change()" hidden />
+            <div id="capture">
             <div id="img_list">
               <div class="img_group">
                 <input
@@ -98,6 +99,7 @@
                 <label for="input4"><img class="img" src="plus.png" /></label>
               </div>
             </div>
+            </div>
           </div>
           <div class="button-container">
             <button class="page-button" data-next-content="filter">
@@ -131,7 +133,7 @@
             <!-- 업로드된 사진들이 여기에 추가됩니다 -->
           </div>
           <div class="button-container">
-            <button  id="download_button">다운로드</button>
+            <button id="download" onclick="donwload_img()">다운로드</button>
           </div>
         </div>
       </div>
@@ -381,33 +383,133 @@
       document.getElementById(pageName).style.display = "block";
     }
 
-    $("#download_button").click(function() {
+function saveAs(uri, filename) {
+
+    var link = document.createElement('a');
+
+    if (typeof link.download === 'string') {
+
+        link.href = uri;
+        link.download = filename;
+
+        //Firefox requires the link to be in the body
+        document.body.appendChild(link);
+
+        //simulate click
+        link.click();
+
+        //remove the link when done
+        document.body.removeChild(link);
+
+    } else {
+
+        window.open(uri);
+
+    }
+}function saveAs(uri, filename) {
+
+    var link = document.createElement('a');
+
+    if (typeof link.download === 'string') {
+
+        link.href = uri;
+        link.download = filename;
+
+        //Firefox requires the link to be in the body
+        document.body.appendChild(link);
+
+        //simulate click
+        link.click();
+
+        //remove the link when done
+        document.body.removeChild(link);
+
+    } else {
+
+        window.open(uri);
+
+    }
+}function saveAs(uri, filename) {
+
+    var link = document.createElement('a');
+
+    if (typeof link.download === 'string') {
+
+        link.href = uri;
+        link.download = filename;
+
+        //Firefox requires the link to be in the body
+        document.body.appendChild(link);
+
+        //simulate click
+        link.click();
+
+        //remove the link when done
+        document.body.removeChild(link);
+
+    } else {
+
+        window.open(uri);
+
+    }
+}function saveAs(uri, filename) {
+
+    var link = document.createElement('a');
+
+    if (typeof link.download === 'string') {
+
+        link.href = uri;
+        link.download = filename;
+
+        //Firefox requires the link to be in the body
+        document.body.appendChild(link);
+
+        //simulate click
+        link.click();
+
+        //remove the link when done
+        document.body.removeChild(link);
+
+    } else {
+
+        window.open(uri);
+
+    }
+}
+function saveAs(uri, filename) {
+
+var link = document.createElement('a');
+
+if (typeof link.download === 'string') {
+
+    link.href = uri;
+    link.download = filename;
+
+    //Firefox requires the link to be in the body
+    document.body.appendChild(link);
+
+    //simulate click
+    link.click();
+
+    //remove the link when done
+    document.body.removeChild(link);
+
+} else {
+
+    window.open(uri);
+
+}
+}
+    function donwload_img(){
       console.log("hi");  
-        html2canvas($("#widget"), {
-          onrendered: function(canvas) {
-            saveAs(canvas.toDataURL(), 'canvas.png');
-          }
+        
+        html2canvas(document.querySelector('#img_list'),{useCORS: true,allowTaint: true,}).then(function(canvas) {
+        console.log(canvas.toDataURL());
+        saveAs(canvas.toDataURL(), 'file-name.png');
         });
-      });
+      };
 
-      function saveAs(uri, filename) {
-        var link = document.createElement('a');
-        if (typeof link.download === 'string') {
-          link.href = uri;
-          link.download = filename;
-
-          //Firefox requires the link to be in the body
-          document.body.appendChild(link);
-
-          //simulate click
-          link.click();
-
-          //remove the link when done
-          document.body.removeChild(link);
-        } else {
-          window.open(uri);
-        }
-      }
+      
 
   </script>
 
