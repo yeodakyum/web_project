@@ -278,26 +278,38 @@
           .getElementsByTagName("img");
 
         for (let i = 0; i < images.length; i++) {
+          let  canvas = document.createElement('canvas');
+          let ctx = canvas.getContext('2d');
+          canvas.width=parseInt(window.getComputedStyle(images[i]).width);
+		      canvas.height=parseInt(window.getComputedStyle(images[i]).height);
+          console.log(canvas.width, canvas.height);
           switch (filter) {
+            
             case "brightness":
-              images[i].style.filter = "brightness(1.5)";
+              ctx.filter = "brightness(110%)";
               break;
             case "contrast":
-              images[i].style.filter = "contrast(1.5)";
+            ctx.filter = "contrast(110%)";
               break;
             case "saturate":
-              images[i].style.filter = "saturate(2)";
+            ctx.filter = "saturate(120%)";
               break;
             case "sepia":
-              images[i].style.filter = "sepia(1)";
+            ctx.filter = "sepia(110%)";
               break;
             case "grayscale":
-              images[i].style.filter = "grayscale(1)";
+            ctx.filter = "grayscale(10%)";
               break;
             case "blur":
-              images[i].style.filter = "blur(3px)";
+            ctx.filter = "blur(2px)";
               break;
           }
+          ctx.imageSmoothingEnabled = true;
+          ctx.drawImage(images[i], 0, 0, canvas.width, canvas.height);
+          let canvas_image=canvas.toDataURL();
+          console.log(canvas_image);
+          images[i].src = canvas_image;
+
         }
       });
     });
