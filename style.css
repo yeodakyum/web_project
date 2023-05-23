@@ -77,6 +77,7 @@ label {
   object-fit: cover;
   object-position: center;
   background-color: white;
+  image-rendering: optimizeQuality;
 }
 
 .img_group {

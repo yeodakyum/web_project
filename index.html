@@ -172,13 +172,16 @@
     //     document.getElementById(contentId).style.display = "block";
     //   }
     // });
-
+      var clean_images = {};
     function change(id) {
       let input = document.getElementById(id);
       let img = document
         .getElementById(id)
         .parentElement.getElementsByClassName("img")[0];
-      if (input.files[0]) img.src = URL.createObjectURL(input.files[0]);
+      if (input.files[0]){ 
+        img.src = URL.createObjectURL(input.files[0]);
+        clean_images[id] = img.src;
+      }
       
       input.parentElement.style.overflow = "auto";
       input.nextElementSibling.style.alignItems = "flex-start";
@@ -220,6 +223,8 @@
 
       // 필터 페이지에 복사한 이미지 리스트를 추가합니다
       imageContainer.appendChild(clonedImgList);
+
+      document.getElementById("upload").remove();
     }
 
     // // '필터 적용하기' 버튼 클릭 이벤트
@@ -305,6 +310,7 @@
               break;
           }
           ctx.imageSmoothingEnabled = true;
+          ctx.imageSmoothingQuality = "high";
           ctx.drawImage(images[i], 0, 0, canvas.width, canvas.height);
           let canvas_image=canvas.toDataURL();
           console.log(canvas_image);
@@ -322,6 +328,10 @@
           .getElementsByTagName("img");
         for (let i = 0; i < images.length; i++) {
           images[i].style.filter = "";
+        }
+        for(const i in clean_images){
+          console.log(i, clean_images[i]);
+          document.getElementById(i).nextElementSibling.childNodes[0].src = clean_images[i];
         }
       });
 
@@ -448,7 +458,7 @@ if (typeof link.download === 'string') {
     function donwload_img(){
       console.log("hi");  
         
-        html2canvas(document.querySelector('#filter-image-container'),{useCORS: true,allowTaint: true, }).then(function(canvas) {
+        html2canvas(document.querySelector('#img_list'),{useCORS: true,allowTaint: true, }).then(function(canvas) {
         console.log(canvas.toDataURL());  
         saveAs(canvas.toDataURL(), 'file-name.png');
         });
