@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <title>한양네컷</title>
     <link href="style.css" rel="stylesheet" />
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
   </head>
   <body>
     <header>
@@ -130,7 +131,7 @@
             <!-- 업로드된 사진들이 여기에 추가됩니다 -->
           </div>
           <div class="button-container">
-            <button class="page-button">다운로드</button>
+            <button  id="download_button">다운로드</button>
           </div>
         </div>
       </div>
@@ -379,5 +380,36 @@
 
       document.getElementById(pageName).style.display = "block";
     }
+
+    $("#download_button").click(function() {
+      console.log("hi");  
+        html2canvas($("#widget"), {
+          onrendered: function(canvas) {
+            saveAs(canvas.toDataURL(), 'canvas.png');
+          }
+        });
+      });
+
+      function saveAs(uri, filename) {
+        var link = document.createElement('a');
+        if (typeof link.download === 'string') {
+          link.href = uri;
+          link.download = filename;
+
+          //Firefox requires the link to be in the body
+          document.body.appendChild(link);
+
+          //simulate click
+          link.click();
+
+          //remove the link when done
+          document.body.removeChild(link);
+        } else {
+          window.open(uri);
+        }
+      }
+
   </script>
+
+  
 </html>
