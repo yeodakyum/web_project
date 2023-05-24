@@ -329,7 +329,7 @@
           }
           ctx.imageSmoothingEnabled = true;
           ctx.imageSmoothingQuality = "high";
-          ctx.drawImage(images[i], 0, 0, canvas.width/2, canvas.height/2);
+          ctx.drawImage(images[i], 0, 0, canvas.width/dpr, canvas.height/dpr);
           let canvas_image = canvas.toDataURL();
           console.log(canvas_image);
           images[i].src = canvas_image;
