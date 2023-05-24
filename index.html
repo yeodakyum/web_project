@@ -57,55 +57,58 @@
           <div class="image-container">
             <input type="color" id="color" onchange="color_change()" hidden />
             <div id="capture">
-            <div id="img_list">
-              <div class="img_group">
-                <input
-                  id="input1"
-                  type="file"
-                  onchange="change(this.id)"
-                  accept="image/*"
-                  hidden
-                />
-                <label for="input1"><img class="img" src="plus.png" /></label>
+              <div id="img_list">
+                <div class="img_group">
+                  <input
+                    id="input1"
+                    type="file"
+                    onchange="change(this.id)"
+                    accept="image/*"
+                    hidden
+                  />
+                  <label for="input1"><img class="img" src="plus.png" /></label>
+                </div>
+                <div class="img_group">
+                  <input
+                    id="input2"
+                    type="file"
+                    onchange="change(this.id)"
+                    accept="image/*"
+                    hidden
+                  />
+                  <label for="input2"><img class="img" src="plus.png" /></label>
+                </div>
+                <div class="img_group">
+                  <input
+                    id="input3"
+                    type="file"
+                    onchange="change(this.id)"
+                    accept="image/*"
+                    hidden
+                  />
+                  <label for="input3"><img class="img" src="plus.png" /></label>
+                </div>
+                <div class="img_group">
+                  <input
+                    id="input4"
+                    type="file"
+                    onchange="change(this.id)"
+                    accept="image/*"
+                    hidden
+                  />
+                  <label for="input4"><img class="img" src="plus.png" /></label>
+                </div>
               </div>
-              <div class="img_group">
-                <input
-                  id="input2"
-                  type="file"
-                  onchange="change(this.id)"
-                  accept="image/*"
-                  hidden
-                />
-                <label for="input2"><img class="img" src="plus.png" /></label>
-              </div>
-              <div class="img_group">
-                <input
-                  id="input3"
-                  type="file"
-                  onchange="change(this.id)"
-                  accept="image/*"
-                  hidden
-                />
-                <label for="input3"><img class="img" src="plus.png" /></label>
-              </div>
-              <div class="img_group">
-                <input
-                  id="input4"
-                  type="file"
-                  onchange="change(this.id)"
-                  accept="image/*"
-                  hidden
-                />
-                <label for="input4"><img class="img" src="plus.png" /></label>
-              </div>
-            </div>
             </div>
           </div>
           <div class="button-container">
             <button class="page-button" data-next-content="filter">
               필터 적용하기
             </button>
-            <p>반드시 4개의 사진을 모두<br />업로드하고 이동해주세요!</p>
+            <br />
+            <strong
+              >반드시 4개의 사진을 모두<br />업로드하고 이동해주세요!</strong
+            >
           </div>
         </div>
       </div>
@@ -127,9 +130,19 @@
               Grayscale
             </button>
             <button class="filter-button" data-filter="blur">Blur</button>
-            <button class="filter-button" id="clear-filters">필터 해제</button>
+            <button class="clear-filter-button" id="clear-filters">
+              필터 해제
+            </button>
+            <br />
+            <strong>
+              필터는 중복적용이 가능합니다.<br />다양한 조합을 만들어보세요!
+            </strong>
           </div>
-          <div class="image-container" id="filter-image-container" style="display: block;">
+          <div
+            class="image-container"
+            id="filter-image-container"
+            style="display: flex"
+          >
             <!-- 업로드된 사진들이 여기에 추가됩니다 -->
           </div>
           <div class="button-container">
@@ -172,17 +185,17 @@
     //     document.getElementById(contentId).style.display = "block";
     //   }
     // });
-      var clean_images = {};
+    var clean_images = {};
     function change(id) {
       let input = document.getElementById(id);
       let img = document
         .getElementById(id)
         .parentElement.getElementsByClassName("img")[0];
-      if (input.files[0]){ 
+      if (input.files[0]) {
         img.src = URL.createObjectURL(input.files[0]);
         clean_images[id] = img.src;
       }
-      
+
       input.parentElement.style.overflow = "auto";
       input.nextElementSibling.style.alignItems = "flex-start";
     }
@@ -283,39 +296,37 @@
           .getElementsByTagName("img");
 
         for (let i = 0; i < images.length; i++) {
-          let  canvas = document.createElement('canvas');
-          let ctx = canvas.getContext('2d');
-          canvas.width=parseInt(window.getComputedStyle(images[i]).width);
-		      canvas.height=parseInt(window.getComputedStyle(images[i]).height);
+          let canvas = document.createElement("canvas");
+          let ctx = canvas.getContext("2d");
+          canvas.width = parseInt(window.getComputedStyle(images[i]).width);
+          canvas.height = parseInt(window.getComputedStyle(images[i]).height);
           console.log(canvas.width, canvas.height);
           switch (filter) {
-            
             case "brightness":
               ctx.filter = "brightness(110%)";
               break;
             case "contrast":
-            ctx.filter = "contrast(110%)";
+              ctx.filter = "contrast(110%)";
               break;
             case "saturate":
-            ctx.filter = "saturate(120%)";
+              ctx.filter = "saturate(120%)";
               break;
             case "sepia":
-            ctx.filter = "sepia(110%)";
+              ctx.filter = "sepia(110%)";
               break;
             case "grayscale":
-            ctx.filter = "grayscale(10%)";
+              ctx.filter = "grayscale(10%)";
               break;
             case "blur":
-            ctx.filter = "blur(2px)";
+              ctx.filter = "blur(2px)";
               break;
           }
           ctx.imageSmoothingEnabled = true;
           ctx.imageSmoothingQuality = "high";
           ctx.drawImage(images[i], 0, 0, canvas.width, canvas.height);
-          let canvas_image=canvas.toDataURL();
+          let canvas_image = canvas.toDataURL();
           console.log(canvas_image);
           images[i].src = canvas_image;
-
         }
       });
     });
@@ -329,9 +340,10 @@
         for (let i = 0; i < images.length; i++) {
           images[i].style.filter = "";
         }
-        for(const i in clean_images){
+        for (const i in clean_images) {
           console.log(i, clean_images[i]);
-          document.getElementById(i).nextElementSibling.childNodes[0].src = clean_images[i];
+          document.getElementById(i).nextElementSibling.childNodes[0].src =
+            clean_images[i];
         }
       });
 
@@ -405,12 +417,10 @@
       document.getElementById(pageName).style.display = "block";
     }
 
-function saveAs(uri, filename) {
+    function saveAs(uri, filename) {
+      var link = document.createElement("a");
 
-    var link = document.createElement('a');
-
-    if (typeof link.download === 'string') {
-
+      if (typeof link.download === "string") {
         link.href = uri;
         link.download = filename;
 
@@ -422,51 +432,40 @@ function saveAs(uri, filename) {
 
         //remove the link when done
         document.body.removeChild(link);
-
-    } else {
-
+      } else {
         window.open(uri);
-
+      }
     }
-}
 
+    function saveAs(uri, filename) {
+      var link = document.createElement("a");
 
-function saveAs(uri, filename) {
+      if (typeof link.download === "string") {
+        link.href = uri;
+        link.download = filename;
 
-var link = document.createElement('a');
+        //Firefox requires the link to be in the body
+        document.body.appendChild(link);
 
-if (typeof link.download === 'string') {
+        //simulate click
+        link.click();
 
-    link.href = uri;
-    link.download = filename;
+        //remove the link when done
+        document.body.removeChild(link);
+      } else {
+        window.open(uri);
+      }
+    }
+    function donwload_img() {
+      console.log("hi");
 
-    //Firefox requires the link to be in the body
-    document.body.appendChild(link);
-
-    //simulate click
-    link.click();
-
-    //remove the link when done
-    document.body.removeChild(link);
-
-} else {
-
-    window.open(uri);
-
-}
-}
-    function donwload_img(){
-      console.log("hi");  
-        
-        html2canvas(document.querySelector('#img_list'),{useCORS: true,allowTaint: true, }).then(function(canvas) {
-        console.log(canvas.toDataURL());  
-        saveAs(canvas.toDataURL(), 'file-name.png');
-        });
-      };
-
-      
-
+      html2canvas(document.querySelector("#img_list"), {
+        useCORS: true,
+        allowTaint: true,
+      }).then(function (canvas) {
+        console.log(canvas.toDataURL());
+        saveAs(canvas.toDataURL(), "file-name.png");
+      });
+    }
   </script>
-
-  
 </html>

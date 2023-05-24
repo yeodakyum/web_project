@@ -130,7 +130,9 @@ label {
 
 .page-button,
 .frame-button,
-.filter-button {
+.filter-button,
+.clear-filter-button,
+#download {
   background: #5e5df0;
   border-radius: 999px;
   box-shadow: #5e5df0 0 10px 20px -10px;
@@ -151,7 +153,13 @@ label {
   border: 0;
 }
 
-.filter-button {
+.clear-filter-button {
+  background: #f05d5d;
+  box-shadow: #f05d5d 0 10px 20px -10px;
+}
+
+.filter-button,
+.clear-filter-button {
   margin-bottom: 10px;
   width: 120px;
 }
