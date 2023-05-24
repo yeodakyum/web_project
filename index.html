@@ -296,10 +296,16 @@
           .getElementsByTagName("img");
 
         for (let i = 0; i < images.length; i++) {
+          let dpr = window.devicePixelRatio || 1; // for hidpi
+          console.log(dpr);
           let canvas = document.createElement("canvas");
           let ctx = canvas.getContext("2d");
-          canvas.width = parseInt(window.getComputedStyle(images[i]).width);
-          canvas.height = parseInt(window.getComputedStyle(images[i]).height);
+          canvas.width =
+            parseInt(window.getComputedStyle(images[i]).width) * dpr;
+          canvas.height =
+            parseInt(window.getComputedStyle(images[i]).height) * dpr;
+          console.log(canvas.width, canvas.height);
+          ctx.scale(dpr, dpr);
           console.log(canvas.width, canvas.height);
           switch (filter) {
             case "brightness":
