@@ -153,9 +153,35 @@ label {
   border: 0;
 }
 
+.page-button:hover,
+.frame-button:hover,
+.filter-button:hover,
+#download:hover {
+  background: #3a3af0;
+  box-shadow: #3a3af0 0 10px 20px -10px;
+}
+
+.page-button:active,
+.frame-button:active,
+.filter-button:active,
+#download:active {
+  box-shadow: #3a3af0 0 5px 10px -5px;
+  transform: translateY(2px);
+}
+
 .clear-filter-button {
   background: #f05d5d;
   box-shadow: #f05d5d 0 10px 20px -10px;
+}
+
+.clear-filter-button:hover {
+  background: #f03a3a;
+  box-shadow: #f03a3a 0 10px 20px -10px;
+}
+
+.clear-filter-button:active {
+  box-shadow: #f03a3a 0 5px 10px -5px;
+  transform: translateY(2px);
 }
 
 .filter-button,
