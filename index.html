@@ -10,20 +10,6 @@
     <header>
       <h1>한양네컷</h1>
     </header>
-    <nav id="navbar">
-      <ul>
-        <!-- <li><a href="#" data-content="about">ABOUT US</a></li>
-        <li><a href="#" data-content="upload">UPLOAD</a></li>
-        <li>
-          <a href="#" data-content="filter" data-next-content="filter"
-            >FILTER</a
-          >
-        </li> -->
-        <li data-content="about">ABOUT US</li>
-        <li data-content="upload">UPLOAD</li>
-        <li data-content="filter">FILTER</li>
-      </ul>
-    </nav>
     <main>
       <div id="about" class="content">
         <h1>당신의 일상을 예술작품으로 바꿔보세요.</h1>
@@ -329,7 +315,13 @@
           }
           ctx.imageSmoothingEnabled = true;
           ctx.imageSmoothingQuality = "high";
-          ctx.drawImage(images[i], 0, 0, canvas.width/dpr, canvas.height/dpr);
+          ctx.drawImage(
+            images[i],
+            0,
+            0,
+            canvas.width / dpr,
+            canvas.height / dpr
+          );
           let canvas_image = canvas.toDataURL();
           console.log(canvas_image);
           images[i].src = canvas_image;
