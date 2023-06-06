@@ -147,33 +147,7 @@
   </body>
 
   <script>
-    // document
-    //   .getElementById("navbar")
-    //   .addEventListener("click", function (event) {
-    //     if (event.target.getAttribute("data-content")) {
-    //       event.preventDefault();
 
-    //       let contents = document.getElementsByClassName("content");
-    //       for (let i = 0; i < contents.length; i++) {
-    //         contents[i].style.display = "none";
-    //       }
-
-    //       let contentId = event.target.getAttribute("data-content");
-    //       document.getElementById(contentId).style.display = "block";
-    //     }
-    //   });
-
-    // document.querySelector("main").addEventListener("click", function (event) {
-    //   if (event.target.getAttribute("data-next-content")) {
-    //     let contents = document.getElementsByClassName("content");
-    //     for (let i = 0; i < contents.length; i++) {
-    //       contents[i].style.display = "none";
-    //     }
-
-    //     let contentId = event.target.getAttribute("data-next-content");
-    //     document.getElementById(contentId).style.display = "block";
-    //   }
-    // });
     var clean_images = {};
     function change(id) {
       let input = document.getElementById(id);
@@ -229,51 +203,6 @@
       document.getElementById("upload").remove();
     }
 
-    // // '필터 적용하기' 버튼 클릭 이벤트
-    // document
-    //   .querySelector('.page-button[data-next-content="filter"]')
-    //   .addEventListener("click", copyImagesToFilterPage);
-
-    // // nav에서 'FILTER'를 클릭하는 이벤트
-    // document
-    //   .querySelector('#navbar a[data-content="filter"]')
-    //   .addEventListener("click", copyImagesToFilterPage);
-
-    // function change(id) {
-    //   let input = document.getElementById(id);
-    //   let img = document
-    //     .getElementById(id)
-    //     .parentElement.getElementsByClassName("img")[0];
-    //   if (input.files[0]) img.src = URL.createObjectURL(input.files[0]);
-    // }
-
-    // function color_change() {
-    //   let color_input = document.getElementById("color").value;
-    //   document.getElementById("img_list").style.backgroundColor = color_input;
-    // }
-
-    // document
-    //   .querySelector('.page-button[data-next-content="filter"]')
-    //   .addEventListener("click", function () {
-    //     let imageContainer = document.getElementById("filter-image-container");
-    //     let images = document
-    //       .getElementById("img_list")
-    //       .getElementsByClassName("img");
-
-    //     // 기존에 추가된 이미지들을 모두 제거합니다
-    //     while (imageContainer.firstChild) {
-    //       imageContainer.firstChild.remove();
-    //     }
-
-    //     // 업로드된 이미지들을 필터 적용 페이지에 추가합니다
-    //     for (let i = 0; i < images.length; i++) {
-    //       if (images[i].src != "plus.png") {
-    //         let img = document.createElement("img");
-    //         img.src = images[i].src;
-    //         imageContainer.appendChild(img);
-    //       }
-    //     }
-    //   });
 
     // 필터 버튼 클릭 시 해당 필터를 이미지에 적용합니다
     let buttons = document.querySelectorAll(".filter-button");
